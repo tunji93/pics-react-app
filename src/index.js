@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from './Context/useContext'
 
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider>
+        <App />
+    </Provider>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
