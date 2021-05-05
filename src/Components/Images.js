@@ -3,7 +3,7 @@ import {Context} from '../Context/useContext'
 
 function Image(props) {
 
-    const{favorite} = useContext(Context)
+    const{favorite, addCart, cart} = useContext(Context)
 
     const[hover, setHover] = useState(false)
     const Hovered = ()=> (
@@ -15,6 +15,13 @@ function Image(props) {
     const size = ()=> (
         props.obj.isFavorite? "fill" : "line"
     )
+    const shade = (img) => {
+        const resp = cart.some(items => items.id === img.id)
+        if(resp) {
+            return "fill"
+        }
+        return "line"
+    }
     return (
         <div className= "wide image-container"
              onMouseEnter = {Hovered}
@@ -22,7 +29,7 @@ function Image(props) {
         >
             <img src={props.obj.url} className="image-grid"/>
             {hover&& <i  onClick= {()=>{favorite(props.obj.id)}} className={"ri-heart-" + size() + " " + "favorite"}></i>}
-            {hover&& <i className="ri-add-circle-line cart"></i>}
+            {hover&& <i onClick = {()=> {addCart(props.obj)}}className={"ri-add-circle-"+shade(props.obj)+ " "+ "cart"}></i>}
         </div>
     )
 }
