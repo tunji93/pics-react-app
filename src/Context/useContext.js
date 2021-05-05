@@ -29,13 +29,24 @@ function Provider(props) {
         setPhotos(updated)
     }
 
-    const addCart = (img) => {
-        setCart(prev => [...prev , img])
+    const toggleCart = (img) => {
+        const check = cart.some(items => items.id === img.id)
+        
+        if(check) {
+            const update = cart.filter((item)=> item.id !== img.id)
+            setCart(update)
+        }
+
+        else {
+            setCart(prev=> setCart([...prev, img]))
+        }
     }
+
+    
 
     return (
         
-        <Context.Provider value={{photos, favorite, addCart, cart}}>
+        <Context.Provider value={{photos, favorite, toggleCart, cart}}>
            {props.children}
         </Context.Provider>
     )
