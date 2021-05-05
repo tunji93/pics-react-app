@@ -13,8 +13,23 @@ function Provider(props) {
             .then(data => setPhotos(data))
     }, [])
 
+    const favorite = (id) => {
+        const updated = photos.map((photo)=> {
+            if(photo.id === id) {
+                return {
+                    ...photo,
+                    isFavorite: !photo.isFavorite
+                }
+            }
+
+            return photo
+        })
+
+        setPhotos(updated)
+    }
+
     return (
-        <Context.Provider value={{photos}}>
+        <Context.Provider value={{photos, favorite}}>
            {props.children}
         </Context.Provider>
     )
