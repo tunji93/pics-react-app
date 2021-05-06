@@ -5,6 +5,7 @@ const Context = React.createContext()
 function Provider(props) {
     const[photos, setPhotos] = useState([])
     const [cart, setCart] = useState([])
+    const [order, setOrder] = useState(true)
 
     const link = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     
@@ -42,11 +43,24 @@ function Provider(props) {
         }
     }
 
+    const emptyCart = () => {
+
+        if(cart.length) {
+        setOrder(false)
+        setTimeout(()=> {
+            setCart([])
+            setOrder(true)
+        }, 3000)
+        }
+        return 
+        
+    }
+
     
 
     return (
         
-        <Context.Provider value={{photos, favorite, toggleCart, cart}}>
+        <Context.Provider value={{photos, favorite, toggleCart, emptyCart, cart, order}}>
            {props.children}
         </Context.Provider>
     )

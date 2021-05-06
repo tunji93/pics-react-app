@@ -28,7 +28,7 @@ function Image(props) {
              onMouseEnter = {Hovered}
              onMouseLeave = {notHovered}
         >
-            <img src={props.obj.url} className="image-grid"/>
+            <img src={props.obj.url} className="image-grid" alt = "images"/>
             {hover&& <i  onClick= {()=>{favorite(props.obj.id)}} className={"ri-heart-" + size() + " " + "favorite"}></i>}
             {hover&& <i onClick = {()=> {toggleCart(props.obj)}}className={"ri-add-circle-"+shade(props.obj)+ " "+ "cart"}></i>}
         </div>

@@ -3,7 +3,7 @@ import {Context} from "../Context/useContext"
 import CartItem from "../Components/CartItem"
 
 function Cart() {
-    const {cart} = useContext(Context)
+    const {cart, emptyCart, order} = useContext(Context)
     const cartItemElements = cart.map(item => (
         <CartItem key={item.id} obj={item} />
     ))
@@ -16,7 +16,7 @@ function Cart() {
             {cartItemElements}
             <p className="total-cost">Total: {totalCostDisplay} </p>
             <div className="order-button">
-                <button>Place Order</button>
+                <button onClick={() => emptyCart()}>{order ? "Place Order" : "placing order..."}</button>
             </div>
         </main>
     )
